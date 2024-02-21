@@ -1,4 +1,4 @@
-from ..domain.customers.Customer import CustomerEntity
+from ..adapters.CustomerAdapter import CustomerAdapter
 from ..resources.dbconfig import Session
 from flask import jsonify
 
@@ -7,7 +7,7 @@ class CustomerRepository():
     def findCustomerByDocument(document):
 
         session = Session()
-        customer_query = session.query(CustomerEntity).filter_by(document=document).first()
+        customer_query = session.query(CustomerAdapter).filter_by(document=document).first()
         customer_data = jsonify({
             'id_customer': customer_query.id_customer,
             'first_name': customer_query.first_name,
