@@ -7,6 +7,14 @@ import json
 app = Flask(__name__)
 api = Api(app)
 
+class Status(Resource):
+    parser = reqparse.RequestParser()
+    def get(self):
+        return {'Status': 'Online'}
+    
+#Check API Status on home
+api.add_resource(Status, '/')
+
 #Customers Endpoints
 api.add_resource(CustomerController, '/customers/findByDocument')
 
