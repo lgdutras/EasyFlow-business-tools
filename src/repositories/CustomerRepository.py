@@ -26,3 +26,16 @@ class CustomerRepository():
             })
 
             return customer_data
+        
+    def getIdByDocument(document):
+        
+        session = Session()
+        id = session.query(CustomerAdapter).filter_by(document=document).first()
+
+        if id == None:
+
+            return abort(404, 'None customer found with the provided document')
+
+        else:
+
+            return id
