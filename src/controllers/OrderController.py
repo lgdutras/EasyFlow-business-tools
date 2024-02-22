@@ -7,3 +7,7 @@ class OrderController():
     class newOrder(Resource):
         def put(self):
             return OrderService.newOrder(request.args.get('document'))
+    
+    class cancelOrder(Resource):
+        def delete(self):
+            return OrderService.cancelOrder(request.args.get('id_order'))
