@@ -9,4 +9,9 @@ class OrderService():
         return OrderRepository.cancelOrder(id_order)
     
     def includeItem(id_order, id_product, quantity):
-        return OrderRepository.includeItem(id_order, id_product, quantity)
+        order_repository = OrderRepository()
+        return order_repository.includeItem(id_order, id_product, quantity)
+    
+    def removeItem(id_product, id_order):
+        order_repository = OrderRepository()
+        return order_repository.removeItem(id_product, id_order)

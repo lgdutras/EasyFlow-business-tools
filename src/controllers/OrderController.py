@@ -20,3 +20,11 @@ class OrderController():
             quantity = request.args.get('quantity')
 
             return OrderService.includeItem(id_order, id_product, quantity)
+
+    class removeItem(Resource):
+        def delete(self):
+
+            id_order = request.args.get('id_order')
+            id_product = request.args.get('id_product')
+
+            return OrderService.removeItem(id_order=id_order, id_product=id_product)
