@@ -23,6 +23,7 @@ api.add_resource(OrderController.newOrder, '/orders/new')
 api.add_resource(OrderController.cancelOrder, '/orders/cancel')
 api.add_resource(OrderController.includeItem, '/orders/items/include')
 api.add_resource(OrderController.removeItem, '/orders/items/remove')
+api.add_resource(OrderController.updateQuantity, '/orders/items/update')
 
 if __name__ == "__main__":
     app.run()

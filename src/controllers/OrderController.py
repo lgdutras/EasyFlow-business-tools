@@ -28,3 +28,12 @@ class OrderController():
             id_product = request.args.get('id_product')
 
             return OrderService.removeItem(id_order=id_order, id_product=id_product)
+        
+    class updateQuantity(Resource):
+        def patch(self):
+
+            id_order = request.args.get('id_order')
+            id_product = request.args.get('id_product')
+            quantity = request.args.get('quantity')
+
+            return OrderService.updateQuantity(id_order, id_product, quantity)

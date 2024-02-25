@@ -124,3 +124,38 @@ class OrderRepository():
         return jsonify({
             'msg': 'Product %s removed from order with id %s' % (id_product, id_order)
             })
+    
+    def updateQuantity(self, id_order, id_product, quantity):
+
+        session = Session()
+        itemToUpdate = session.query(OrderItemAdapter).filter_by(id_order=id_order, id_product=id_product).first()
+        orderToUpdate = session.query(OrderAdapter).filter_by(id_order=id_order).first()
+
+        if orderToUpdate == None:
+        
+            return abort(404, 'Order with id %s does not exists' % id_order)
+        
+        elif itemToUpdate == None:
+
+            return abort(404, 'Product %s does not exists on order %s does not exists' % (id_product, id_order))
+
+        elif orderToUpdate.order_status not in (1, 2):
+        
+            order_status = orderToUpdate.order_status
+            order_status_description = self.order_status.get(order_status)
+            
+            return abort(423, 'You can not change item quantity on a order wich is %s' % (order_status_description))
+        
+        itemToUpdate.quantity = quantity
+        session.commit()
+
+        product = ProductRepository.getProductById(id_product)
+
+        return jsonify({
+            'id_product': itemToUpdate.id_product,
+            'id_order': itemToUpdate.id_order,
+            'description': product.description,
+            'price': itemToUpdate.price,
+            'quantity': itemToUpdate.quantity,
+            'datetime': itemToUpdate.datetime
+        })
