@@ -21,6 +21,7 @@ api.add_resource(CustomerController, '/customers/findByDocument')
 #Orders Endpoints
 api.add_resource(OrderController.newOrder, '/orders/new')
 api.add_resource(OrderController.cancelOrder, '/orders/cancel')
+api.add_resource(OrderController.includeItem, '/orders/items/include')
 
 if __name__ == "__main__":
     app.run()

@@ -7,3 +7,6 @@ class OrderService():
     
     def cancelOrder(id_order):
         return OrderRepository.cancelOrder(id_order)
+    
+    def includeItem(id_order, id_product, quantity):
+        return OrderRepository.includeItem(id_order, id_product, quantity)

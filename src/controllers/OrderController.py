@@ -11,3 +11,12 @@ class OrderController():
     class cancelOrder(Resource):
         def delete(self):
             return OrderService.cancelOrder(request.args.get('id_order'))
+        
+    class includeItem(Resource):
+        def put(self):
+
+            id_order = request.args.get('id_order')
+            id_product = request.args.get('id_product')
+            quantity = request.args.get('quantity')
+
+            return OrderService.includeItem(id_order, id_product, quantity)
